@@ -13,3 +13,8 @@ dependencies {
     testCompile 'org.assertj:assertj-core:3.13.2'
     testCompile 'org.mockito:mockito-core:2.+'
 }
+
+buildScan {
+    licenseAgreementUrl = "https://gradle.com/terms-of-service"
+    licenseAgree = "yes"
+}
