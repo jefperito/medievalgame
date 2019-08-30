@@ -1,10 +1,12 @@
 plugins {
     id "java"
     id "base"
+    id "com.gradle.build-scan" version "2.0.2"
 }
 
 repositories {
     mavenCentral()
+    maven { url 'https://plugins.gradle.org/m2' }
 }
 
 dependencies {
@@ -14,7 +16,4 @@ dependencies {
     testCompile 'org.mockito:mockito-core:2.+'
 }
 
-buildScan {
-    licenseAgreementUrl = "https://gradle.com/terms-of-service"
-    licenseAgree = "yes"
-}
+apply plugin: 'com.gradle.build-scan'
