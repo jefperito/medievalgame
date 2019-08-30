@@ -1,6 +1,5 @@
 package br.com.jefperito.medievalgame.core.entity.history;
 
-import br.com.jefperito.medievalgame.core.entity.creature.Character;
 import br.com.jefperito.medievalgame.core.usecase.historyinteract.CharacterAction;
 import br.com.jefperito.medievalgame.core.usecase.historyinteract.Consequence;
 
@@ -18,5 +17,5 @@ public abstract class History {
         historyLines.add(historyLine);
     }
 
-    public abstract Consequence createHistoryLine(Character character, CharacterAction characterAction) throws MissedCharacterActionException;
+    public abstract Consequence createConsequence(CharacterAction characterAction) throws MissedCharacterActionException;
 }

@@ -30,7 +30,7 @@ public class CharacterAction {
         return inputData;
     }
 
-    public static enum Type {
+    public enum Type {
         INTENT,
         START
     }
