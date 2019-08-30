@@ -1,5 +1,6 @@
 package br.com.jefperito.medievalgame.application.entrypoint.commandline;
 
+import br.com.jefperito.medievalgame.application.entrypoint.commandline.newcharacter.NewCharacter;
 import br.com.jefperito.medievalgame.core.entity.history.MissedCharacterActionException;
 import br.com.jefperito.medievalgame.core.usecase.characterexists.CharacterExists;
 import br.com.jefperito.medievalgame.core.usecase.getrandomenemy.GetRandomEnemy;
@@ -34,6 +35,9 @@ public class GameInteractorTest {
 
     @Mock
     private GetRandomEnemy getRandomEnemy;
+
+    @Mock
+    private NewCharacter newCharacter;
 
     @Test(expected = DeathException.class)
     public void shouldThrowsDeathExceptionIfHistoryInteractorReturnsADeathConsequence() throws MissedCharacterActionException, DeathException {
@@ -70,6 +74,24 @@ public class GameInteractorTest {
         verify(commandLineInterface, times(2)).printText(anyString());
         verify(historyInteractor, times(2)).interact(any());
         verify(commandLineInterface).waitForInputString();
+    }
+
+    @Test
+    public void shouldCreateACharacterIfItDoesNotExistsAndCreateANewHistory() throws MissedCharacterActionException, DeathException {
+        configureCharacterExistsToReturnsFalse();
+        configureHistoryInteractorToReturnsHistoryConsequenceWithStartAction();
+        configureHistoryInteractorToReturnsHistoryConsequenceWithIntentAction();
+
+        new GameInteractor(null, newCharacter, commandLineInterface, historyInteractor, characterExists, null).start();
+
+        verify(commandLineInterface, times(2)).printText(anyString());
+        verify(historyInteractor, times(2)).interact(any());
+        verify(newCharacter).createACharacter();
+        verify(commandLineInterface).waitForInputString();
+    }
+
+    private void configureCharacterExistsToReturnsFalse() {
+        when(characterExists.exists()).thenReturn(false);
     }
 
     private void configureHistoryInteractorToReturnsHistoryConsequenceWithStartAction() throws MissedCharacterActionException {
