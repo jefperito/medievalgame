@@ -8,7 +8,6 @@ public class InMemoryAllEnemies implements AllEnemies {
 
     @Override
     public Creature withId(Long enemyId) {
-        // TODO
         return EnemyGenerator.build();
     }
 }
