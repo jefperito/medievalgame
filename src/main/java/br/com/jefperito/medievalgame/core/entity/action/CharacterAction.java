@@ -1,4 +1,4 @@
-package br.com.jefperito.medievalgame.core.usecase.historyinteract;
+package br.com.jefperito.medievalgame.core.entity.action;
 
 public class CharacterAction {
 
@@ -9,7 +9,7 @@ public class CharacterAction {
         this.type = type;
     }
 
-    private CharacterAction(Type type, String inputData) {
+    public CharacterAction(Type type, String inputData) {
         this.type = type;
         this.inputData = inputData;
     }

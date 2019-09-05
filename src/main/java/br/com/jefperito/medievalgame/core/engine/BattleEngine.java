@@ -1,6 +1,5 @@
 package br.com.jefperito.medievalgame.core.engine;
 
-import br.com.jefperito.medievalgame.application.entrypoint.commandline.CommandLineInterface;
 import br.com.jefperito.medievalgame.core.engine.plugin.Listener;
 import br.com.jefperito.medievalgame.core.entity.creature.Character;
 import br.com.jefperito.medievalgame.core.entity.creature.Creature;
@@ -12,29 +11,30 @@ import java.util.Random;
 public class BattleEngine {
 
     private static final int POINTS_TO_ATTACK = 100;
-    private final CommandLineInterface commandLineInterface;
     private List<Listener> listeners;
     private double accumulatorCharacter = 0;
     private double accumulatorEnemy = 0;
     private AttackTurn attackTurn;
 
-    private BattleEngine(CommandLineInterface commandLineInterface) {
-        this.commandLineInterface = commandLineInterface;
+    private BattleEngine() {
         listeners = new ArrayList<>();
     }
 
-    public static BattleEngine start(CommandLineInterface commandLineInterface) {
-        return new BattleEngine(commandLineInterface);
+    public static BattleEngine start() {
+        return new BattleEngine();
     }
 
-    public void battle(Character character, Creature enemy) {
-        listeners.forEach(listener -> listener.onEvent(Event.PRE_COMBAT, character));
-
-        startBattle(character, enemy);
-        listeners.forEach(listener -> listener.onEvent(Event.POST_COMBAT, character));
+    public List<String> battle(Character character, Creature enemy) {
+        try {
+            listeners.forEach(listener -> listener.onEvent(Event.PRE_COMBAT, character));
+            return startBattle(character, enemy);
+        } finally {
+            listeners.forEach(listener -> listener.onEvent(Event.POST_COMBAT, character));
+        }
     }
 
-    private void startBattle(Character character, Creature enemy) {
+    private List<String> startBattle(Character character, Creature enemy) {
+        List<String> battleMessages = new ArrayList<>();
         while (character.isAlive() && enemy.isAlive()) {
             accumulatorCharacter += new Random().nextInt(8) * .7 * character.getVelocityPoints();
             accumulatorEnemy += new Random().nextInt(8) * .7 * enemy.getVelocityPoints();
@@ -43,10 +43,11 @@ public class BattleEngine {
             if (attackTurn == AttackTurn.NO_OPTIONS) {
                 continue;
             }
-            attackPhase(character, enemy);
+            battleMessages.addAll(attackPhase(character, enemy));
             decreaseAccumulator();
         }
-        commandLineInterface.printText((character.isAlive() ? enemy.getName() : character.getName()) + " faleceu");
+        battleMessages.add((character.isAlive() ? enemy.getName() : character.getName()) + " faleceu");
+        return battleMessages;
     }
 
     private void decreaseAccumulator() {
@@ -58,25 +59,28 @@ public class BattleEngine {
         }
     }
 
-    private void attackPhase(Character character, Creature enemy) {
+    private List<String> attackPhase(Character character, Creature enemy) {
+        List<String> attackPhaseMessages = new ArrayList<>();
+
         if (attackTurn == AttackTurn.CHARACTER) {
-            commandLineInterface.printText(character.getName() + " atacando");
+            attackPhaseMessages.add(character.getName() + " atacando");
             int attack = calculateAttack(character);
             int defense = calculateDefense(enemy);
 
             int damage = attack * (100 / (50 + defense));
-            commandLineInterface.printText(character.getName() + " causou " + damage + " de dano.");
+            attackPhaseMessages.add(character.getName() + " causou " + damage + " de dano.");
             enemy.decreaseHealthPoints(damage);
         }
         if (attackTurn == AttackTurn.ENEMY) {
-            commandLineInterface.printText(enemy.getName() + " atacando");
+            attackPhaseMessages.add(enemy.getName() + " atacando");
             int attack = calculateAttack(enemy);
             int defense = calculateDefense(character);
 
             int damage = attack - defense;
-            commandLineInterface.printText(enemy.getName() + " causou " + damage + " de dano.");
+            attackPhaseMessages.add(enemy.getName() + " causou " + damage + " de dano.");
             character.decreaseHealthPoints(damage);
         }
+        return attackPhaseMessages;
     }
 
     private int calculateDefense(Creature creature) {

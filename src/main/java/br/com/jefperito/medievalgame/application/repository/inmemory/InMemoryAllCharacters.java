@@ -5,7 +5,7 @@ import br.com.jefperito.medievalgame.core.entity.creature.Character;
 
 public class InMemoryAllCharacters implements AllCharacters {
 
-    Character character;
+    private Character character;
 
     @Override
     public Character getActive() {

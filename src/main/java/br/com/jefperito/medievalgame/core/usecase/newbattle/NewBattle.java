@@ -4,6 +4,8 @@ import br.com.jefperito.medievalgame.core.engine.BattleEngine;
 import br.com.jefperito.medievalgame.core.entity.creature.AllCharacters;
 import br.com.jefperito.medievalgame.core.entity.creature.Creature;
 
+import java.util.List;
+
 public class NewBattle {
 
     private final BattleEngine battleEngine;
@@ -14,7 +16,7 @@ public class NewBattle {
         this.allCharacters = allCharacters;
     }
 
-    public void start(Creature enemy) {
-        battleEngine.battle(allCharacters.getActive(), enemy);
+    public List<String> start(Creature enemy) {
+        return battleEngine.battle(allCharacters.getActive(), enemy);
     }
 }

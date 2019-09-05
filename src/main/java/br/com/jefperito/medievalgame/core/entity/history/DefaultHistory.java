@@ -1,12 +1,12 @@
 package br.com.jefperito.medievalgame.core.entity.history;
 
-import br.com.jefperito.medievalgame.core.usecase.historyinteract.CharacterAction;
-import br.com.jefperito.medievalgame.core.usecase.historyinteract.Consequence;
+import br.com.jefperito.medievalgame.core.entity.action.CharacterAction;
+import br.com.jefperito.medievalgame.core.entity.consequence.Consequence;
 
 public class DefaultHistory extends History {
 
     @Override
-    public Consequence createConsequence(CharacterAction characterAction) throws MissedCharacterActionException {
+    public Consequence createConsequence(CharacterAction characterAction) {
         if (characterAction.getType().equals(CharacterAction.Type.START)) {
             return Consequence.ofHistory("Voce estava andando e tropecou em  uma pedra, o que voce deseja fazer?");
         }
