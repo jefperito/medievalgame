@@ -1,10 +1,5 @@
-package br.com.jefperito.medievalgame.application.entrypoint.commandline;
+package br.com.jefperito.medievalgame.entrypoint.commandline;
 
-import br.com.jefperito.medievalgame.application.entrypoint.commandline.getaction.ActionNotFound;
-import br.com.jefperito.medievalgame.application.entrypoint.commandline.getaction.GetChosenAction;
-import br.com.jefperito.medievalgame.application.entrypoint.commandline.newcharacter.NewCharacter;
-import br.com.jefperito.medievalgame.application.repository.inmemory.InMemoryAllCharacterActions;
-import br.com.jefperito.medievalgame.application.repository.inmemory.InMemoryAllCharacters;
 import br.com.jefperito.medievalgame.core.engine.BattleEngine;
 import br.com.jefperito.medievalgame.core.entity.creature.AllCharacters;
 import br.com.jefperito.medievalgame.core.usecase.characterexists.CharacterExists;
@@ -18,6 +13,11 @@ import br.com.jefperito.medievalgame.core.usecase.getwelcome.GetWelcome;
 import br.com.jefperito.medievalgame.core.usecase.historyinteract.DeathException;
 import br.com.jefperito.medievalgame.core.usecase.historyinteract.HistoryInteractor;
 import br.com.jefperito.medievalgame.core.usecase.newbattle.NewBattle;
+import br.com.jefperito.medievalgame.entrypoint.commandline.getaction.ActionNotFound;
+import br.com.jefperito.medievalgame.entrypoint.commandline.getaction.GetChosenAction;
+import br.com.jefperito.medievalgame.entrypoint.commandline.newcharacter.NewCharacter;
+import br.com.jefperito.medievalgame.repository.inmemory.InMemoryAllCharacterActions;
+import br.com.jefperito.medievalgame.repository.inmemory.InMemoryAllCharacters;
 
 public class Main {
 

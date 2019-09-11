@@ -10,8 +10,8 @@ public class LayerArchitectureTest {
     @Test
     public void shouldCheckThatApplicationLayerMustBeVisibleOnlyOwnLayer() {
         ArchRule archRule = layeredArchitecture()
-                .layer("EntryPoint").definedBy("..application.entrypoint..")
-                .layer("Repository").definedBy("..application.repository..")
+                .layer("EntryPoint").definedBy("..entrypoint..")
+                .layer("Repository").definedBy("..repository..")
                 .layer("Entity").definedBy("..core.entity..")
                 .layer("UseCase").definedBy("..core.usecase..")
                 .layer("Engine").definedBy("..core.engine..")

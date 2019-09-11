@@ -1,4 +1,4 @@
-package br.com.jefperito.medievalgame.application.entrypoint.commandline;
+package br.com.jefperito.medievalgame.entrypoint.commandline;
 
 import java.util.Collection;
 import java.util.Scanner;

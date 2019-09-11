@@ -1,6 +1,5 @@
-package br.com.jefperito.medievalgame.application.entrypoint.commandline;
+package br.com.jefperito.medievalgame.entrypoint.commandline;
 
-import br.com.jefperito.medievalgame.application.entrypoint.commandline.newcharacter.NewCharacter;
 import br.com.jefperito.medievalgame.core.usecase.characterexists.CharacterExists;
 import br.com.jefperito.medievalgame.core.usecase.createcharacter.CharacterActionDTO;
 import br.com.jefperito.medievalgame.core.usecase.createcharacter.CreateCharacterAction;
@@ -10,6 +9,7 @@ import br.com.jefperito.medievalgame.core.usecase.historyinteract.ConsequenceDTO
 import br.com.jefperito.medievalgame.core.usecase.historyinteract.DeathException;
 import br.com.jefperito.medievalgame.core.usecase.historyinteract.HistoryInteractor;
 import br.com.jefperito.medievalgame.core.usecase.newbattle.NewBattle;
+import br.com.jefperito.medievalgame.entrypoint.commandline.newcharacter.NewCharacter;
 
 import java.util.List;
 

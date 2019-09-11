@@ -1,4 +1,4 @@
-package br.com.jefperito.medievalgame.application.repository.inmemory;
+package br.com.jefperito.medievalgame.repository.inmemory;
 
 import br.com.jefperito.medievalgame.core.entity.action.AllCharacterActions;
 import br.com.jefperito.medievalgame.core.entity.action.CharacterAction;

@@ -1,7 +1,7 @@
-package br.com.jefperito.medievalgame.application.entrypoint.commandline.newcharacter;
+package br.com.jefperito.medievalgame.entrypoint.commandline.newcharacter;
 
-import br.com.jefperito.medievalgame.application.entrypoint.commandline.CommandLineInterface;
 import br.com.jefperito.medievalgame.core.usecase.createcharacter.CreateCharacter;
+import br.com.jefperito.medievalgame.entrypoint.commandline.CommandLineInterface;
 
 public class NewCharacter {
 

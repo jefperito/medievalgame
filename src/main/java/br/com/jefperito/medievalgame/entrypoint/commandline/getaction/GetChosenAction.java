@@ -1,8 +1,8 @@
-package br.com.jefperito.medievalgame.application.entrypoint.commandline.getaction;
+package br.com.jefperito.medievalgame.entrypoint.commandline.getaction;
 
-import br.com.jefperito.medievalgame.application.entrypoint.commandline.InputAction;
+import br.com.jefperito.medievalgame.entrypoint.commandline.InputAction;
 
-import static br.com.jefperito.medievalgame.application.entrypoint.commandline.InputAction.START_GAME;
+import static br.com.jefperito.medievalgame.entrypoint.commandline.InputAction.START_GAME;
 
 public class GetChosenAction {
 
