@@ -17,7 +17,9 @@ public class InMemoryAllCharacterActions implements AllCharacterActions {
         if (characterActionOptional.isPresent()) {
             return characterActionOptional.get();
         }
-        return new CharacterAction(type, inputData);
+        CharacterAction characterAction = new CharacterAction(type, inputData);
+        characterActions.add(characterAction);
+        return characterAction;
 
     }
 
