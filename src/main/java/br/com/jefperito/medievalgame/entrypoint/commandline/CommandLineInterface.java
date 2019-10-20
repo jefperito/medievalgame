@@ -21,7 +21,7 @@ public class CommandLineInterface {
     }
 
     public String waitForInputString() {
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     private String prettifyList(Collection<String> text) {

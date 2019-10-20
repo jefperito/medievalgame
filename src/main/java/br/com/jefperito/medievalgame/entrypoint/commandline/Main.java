@@ -55,8 +55,7 @@ public class Main {
             return new GetChosenAction().withAction(rawAction).execute();
         } catch (ActionNotFound actionNotFound) {
             commandLineInterface.printText("Opção não encontrada, selecione uma das opções:");
-            getAction();
+            return getAction();
         }
-        return null;
     }
 }
